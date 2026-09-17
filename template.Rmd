@@ -2,9 +2,8 @@
 title: "not so Simple document!!! too fast!!!"
 author: "Zai...brain damaged"
 output: 
-  html_document:
-    toc: true #table of content
-    toc_float: true
+  github_document:
+
 ---
 
 I'm an R Markdown document! 
