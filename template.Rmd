@@ -1,0 +1,120 @@
+---
+title: "Simple document"
+author: "Zai"
+output: 
+  html_document:
+    toc: true #table of content
+    toc_float: true
+---
+
+I'm an R Markdown document! 
+
+# Section 0: library
+
+```{r echo = FALSE, message = F}
+library(tidyverse)
+# echo hides code chunk, message = F hide the message/suggestions/flags
+# eval = F means let the code do not run
+```
+
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+
+```{r}
+samp = rnorm(100) #only codein ``` will run
+length(samp)
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+
+# Section 3: a tibble
+
+```{r}
+plot_df = 
+  tibble(
+    x = rnorm(1000, sd = 0.5),
+    y = 1 + 2*x + rnorm(1000)
+  )
+
+head(plot_df)
+```
+
+# Section 4: plots
+
+```{r echo = FALSE}
+ggplot(plot_df, aes(x = x)) + geom_histogram()
+
+ggplot(plot_df, aes(x = x, y = y)) + geom_point()
+#echo = F meaning removing the code display in the html
+```
+
+# Section 5: learning assessment 2
+
+This plot shows the distribution of the absolutes value of $X \sim N(1, 1)$
+
+```{r learning assessment 2}
+la_df = tibble(
+  num_var = rnorm(500, mean = 1),
+  log_var = num_var > 0, # logical factor means T or F
+  abs_var = abs(num_var)
+)
+
+ggplot(la_df, aes(x = abs_var)) + geom_histogram()
+```
+
+The median is `r round(median(pull(la_df, num_var)), 2)`.
+
+Text formatting 
+------------------------------------------------------------
+
+*italic*  or  _italic_
+**bold**  or  __bold__
+`code`
+superscript^2^ and subscript~2~
+
+
+Headings
+------------------------------------------------------------
+
+# 1st Level Header
+
+## 2nd Level Header
+
+### 3rd Level Header
+
+
+Lists
+------------------------------------------------------------
+
+*   Bulleted list item 1
+
+*   Item 2
+
+    * Item 2a
+
+    * Item 2b
+
+1.  Numbered list item 1
+
+1.  Item 2. The numbers are incremented automatically in the output.
+
+
+Tables 
+------------------------------------------------------------
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+# Section 7: learning Assessment 3
+
+* The mean is `r round(mean(pull(la_df, num_var)),2)`
+* The median is `r round(median(pull(la_df, num_var)),2)`
+* The SD is `r round(sd(pull(la_df, num_var)),2)`
