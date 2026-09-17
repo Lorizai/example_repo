@@ -1,6 +1,6 @@
 ---
-title: "Simple document"
-author: "Zai"
+title: "not so Simple document!!! too fast!!!"
+author: "Zai...brain damaged"
 output: 
   html_document:
     toc: true #table of content
